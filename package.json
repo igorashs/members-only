@@ -1,0 +1,49 @@
+{
+  "name": "members-only",
+  "version": "1.0.0",
+  "description": "authentification project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "start-debug": "DEBUG=members-only:* npm start",
+    "devstart": "nodemon app.j",
+    "serverstart": "DEBUG=members-only:* npm run devstart"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igorashs/members-only.git"
+  },
+  "keywords": [
+    "express",
+    "node",
+    "auth"
+  ],
+  "engines": {
+    "node": "12.16.2"
+  },
+  "author": "igorashs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/igorashs/members-only/issues"
+  },
+  "homepage": "https://github.com/igorashs/members-only#readme",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "debug": "^4.1.1",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "helmet": "^3.22.0",
+    "http-errors": "^1.7.3",
+    "mongoose": "^5.9.10",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.3"
+  }
+}
