@@ -33,7 +33,7 @@ touch .env
 - [@hapi/joi](https://hapi.dev/module/joi/) (data validator)
 - [mongoose](https://mongoosejs.com/) (ODM)
 - [passport](https://www.npmjs.com/package/passport) (authentication)
-- [ejs](https://ejs.co/) (template engine)
+- [pug](https://pugjs.org/api/getting-started.html) (template engine)
 - and more...
 
 ## License

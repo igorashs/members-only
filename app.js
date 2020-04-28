@@ -28,7 +28,7 @@ db.on('error', (err) => {
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
 
 // log our request in a fancy way
 app.use(morgan('dev'));
@@ -46,10 +46,10 @@ app.use(compression());
 // serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// add our routes TODO
-app.get('/', (req, res) => {
-  res.send('Hello There');
-});
+// add our routes
+const indexRouter = require('./routes/index');
+
+app.get('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
