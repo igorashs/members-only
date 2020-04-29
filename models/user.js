@@ -8,9 +8,10 @@ const userSchema = new mongoose.Schema({
   membership: {
     type: String,
     required: true,
-    enum: ['default', 'member', 'admin'],
+    enum: ['default', 'member'],
     default: 'default'
-  }
+  },
+  isAdmin: { type: Boolean, default: false }
 });
 
 userSchema.virtual('fullname').get(function () {
