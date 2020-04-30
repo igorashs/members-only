@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="../assets/styles/style.css")
+    link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet")
+    title= title || 'Error'
+  body
+    header(class="main-header")
+      nav(class="main-navigation")
+        ul(class="navigation-links")
+          li
+            a(href="/") Home
+          if (currentUser)
+            li
+              a(href="/message/create") Add message
+            if (!currentUser.isMember)
+              li
+                a(href="/membership/join") Join the club
+            li
+              a(href="/user/log-out") Log out
+          else
+            li
+              a(href="/user/create") Sign up
+            li
+              a(href="/user/log-in") Log in
+    main
+      block content
