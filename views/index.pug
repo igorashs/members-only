@@ -3,15 +3,17 @@ extends layout
 block content
 
   .message-board
-  if messages
-    ul(class="messages-list")
-      each m in messages
-        li(class="message")
-          h3= m.title
-          p=m.text
-          .message-info
-            if currentUser && (currentUser.isMember || currentUser.isAdmin)
-              span(class="message-author") #{m.user.fullname}
-            else
-              span(class="message-author") hidden on bush
-            span(class="message-timestamp") #{m.timestampFormatted}
+    if messages
+      ul(class="messages-list")
+        each m in messages
+          li(class="message")
+            h3
+              span Title: 
+              | #{m.title}
+            p=m.text
+            .message-info
+              if currentUser && (currentUser.isMember || currentUser.isAdmin)
+                span(class="message-author") #{m.user.fullname}
+              else
+                span(class="message-author") hidden on bush
+              span(class="message-timestamp") #{m.timestampFormatted}
