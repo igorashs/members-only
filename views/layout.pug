@@ -18,6 +18,8 @@ html(lang="en")
             if (!currentUser.isMember)
               li
                 a(href="/membership/join") Join the club
+        ul(class="auth-links")
+          if (currentUser)
             li
               a(href="/user/log-out") Log out
           else
