@@ -18,4 +18,8 @@ userSchema.virtual('fullname').get(function () {
   return `${this.firstName} ${this.lastName}`;
 });
 
+userSchema.virtual('isMember').get(function () {
+  return this.membership === 'member';
+});
+
 module.exports = mongoose.model('User', userSchema);
