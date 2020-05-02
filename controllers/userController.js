@@ -75,7 +75,10 @@ exports.postUserCreate = async (req, res, next) => {
       });
     } else {
       try {
-        const checkUser = await User.findOne({ username: value.username });
+        const checkUser = await User.findOne(
+          { username: value.username },
+          'username'
+        );
 
         if (checkUser) {
           res.render('sign-up-form', {
