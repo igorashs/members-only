@@ -230,3 +230,8 @@ button {
   color: #fff;
   cursor: pointer;
 }
+
+.error {
+  color: #f38888;
+  font-size: 16px;
+}
