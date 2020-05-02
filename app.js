@@ -49,6 +49,14 @@ app.use(compression());
 // serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(
+  express.urlencoded({
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    extended: false
+  })
+);
+
 // add our routes
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
