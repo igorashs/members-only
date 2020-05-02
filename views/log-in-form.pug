@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1 Log In
+  form(action="", method="post")
+    .input-group
+      label(for="username") Username
+      if errors.username
+        span.error= errors.username.message
+      input(id="username" name="username" type="text" placeholder="johnwick" required value=user ? user.username : '')
+    .input-group
+      label(for="password") Password
+      if errors.password
+        span.error= errors.password.message
+      input(id="password" name="password" type="password" required)
+    .input-group
+      button Log In
