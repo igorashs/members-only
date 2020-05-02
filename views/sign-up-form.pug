@@ -4,19 +4,19 @@ block content
   h1 Sign Up
   form(action="", method="post")
     .input-group
-      span(for="firstname") First name
-      input(id="firstanme" name="firstname" type="text" placeholder="John" required value=user ? user.firstname : '')
+      label(for="firstname") First name
+      input(id="firstname" name="firstname" type="text" placeholder="John" required value=user ? user.firstname : '')
     .input-group
-      span(for="lastname") Last name
+      label(for="lastname") Last name
       input(id="lastname" name="lastname" type="text" placeholder="Wick" required value=user ? user.lastname : '')
     .input-group
-      span(for="username") Username
+      label(for="username") Username
       input(id="username" name="username" type="text" placeholder="johnwick" required value=user ? user.username : '')
     .input-group
-      span(for="password") Password
+      label(for="password") Password
       input(id="password" name="password" type="password" required)
     .input-group
-      span(for="repeatPassword") Repeat password
+      label(for="repeatPassword") Repeat password
       input(id="repeatPassword" name="repeatPassword" type="password" required)
     .input-group
       button Sign Up
