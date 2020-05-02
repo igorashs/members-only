@@ -9,9 +9,7 @@ router.get('/create', userController.getUserCreate);
 
 router.post('/create', userController.postUserCreate);
 
-router.get('/log-in', (req, res) => {
-  res.send('GET /user/log-in not implemented');
-});
+router.get('/log-in', userController.getUserLogin);
 
 router.post('log-in', (req, res) => {
   res.send('POST /user/log-in not implemented');

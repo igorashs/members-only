@@ -106,3 +106,11 @@ exports.postUserCreate = async (req, res, next) => {
     next();
   }
 };
+
+module.exports.getUserLogin = (req, res) => {
+  if (res.locals.currentUser) {
+    res.redirect('/');
+  } else {
+    res.render('log-in-form', { title: 'Log In', errors: {} });
+  }
+};
