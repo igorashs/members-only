@@ -1,7 +1,11 @@
 extends layout
 
 block content
-  h1 Log In
+  h1 
+    if (newUserName)
+      | Welcome! #{newUserName}, please Log In
+    else
+      | Log In
   form(action="", method="post")
     .input-group
       label(for="username") Username

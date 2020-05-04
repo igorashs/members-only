@@ -94,7 +94,7 @@ exports.postUserCreate = async (req, res, next) => {
 
           await user.save();
 
-          res.redirect('/user/log-in?isNewUser=true');
+          res.redirect(`/user/log-in?newUserName=${user.firstName}`);
         }
       } catch (err) {
         debug(err);
@@ -111,6 +111,9 @@ module.exports.getUserLogin = (req, res) => {
   if (res.locals.currentUser) {
     res.redirect('/');
   } else {
-    res.render('log-in-form', { title: 'Log In', errors: {} });
+    const newUserName = req.query.newUserName ? req.query.newUserName : null;
+    res.render('log-in-form', { title: 'Log In', errors: {}, newUserName });
   }
 };
+
+module.exports.postUserLogin = async (req, res, next) => {};
