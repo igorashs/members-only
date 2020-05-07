@@ -7,12 +7,12 @@ block content
     .input-group
       label(for="title") Title
       if errors.title
-        span.errors= errors.title.message 
+        span.error= errors.title.message 
       input(id="title" name="title" type="text" placeholder="My title" required value=message ? message.title : '')
     .input-group.large-group
       label(for="text") Text
       if errors.text
-        span.errors= errors.text.message 
+        span.error= errors.text.message 
       textarea(id="text" name="text" type="text" placeholder="My Message" rows="7" required value=message ? message.text : '')
     .input-group.large-group
       button(class="btn submit-msg-btn") Submit
