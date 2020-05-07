@@ -2,6 +2,7 @@ const debug = require('debug')('members-only:userController');
 const User = require('../models/user');
 const Joi = require('@hapi/joi');
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
 
 const nameMessages = {
   'string.min': 'length must be at least 2 characters long',
@@ -116,4 +117,9 @@ module.exports.getUserLogin = (req, res) => {
   }
 };
 
-module.exports.postUserLogin = async (req, res, next) => {};
+module.exports.postUserLogin = (req, res, next) => {
+  passport.authenticate('local', {
+    failureRedirect: '/user/log-in',
+    successRedirect: '/'
+  })(req, res, next);
+};

@@ -7,6 +7,12 @@ const createError = require('http-errors');
 const path = require('path');
 const express = require('express');
 const env = require('./.env.config');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');
+const bcrypt = require('bcryptjs');
+
+const session = require('express-session');
 
 const app = express();
 
@@ -56,6 +62,48 @@ app.use(
     extended: false
   })
 );
+
+// setup LocalStrategy for passport
+passport.use(
+  new LocalStrategy(async (username, password, done) => {
+    try {
+      const user = await User.findOne({ username });
+
+      if (!user) {
+        return done(null, false);
+      }
+
+      if (await bcrypt.compare(password, user.password)) {
+        return done(null, user);
+      } else {
+        return done(null, false);
+      }
+    } catch (err) {
+      debugServer(err);
+      return done(err);
+    }
+  })
+);
+
+// passport session
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
+
+passport.deserializeUser(async (_id, done) => {
+  try {
+    const user = await User.findById(_id);
+
+    done(null, user);
+  } catch (err) {
+    done(err, null);
+  }
+});
+
+// initialize passport
+app.use(session({ secret: 'Alune', resave: true, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // add our routes
 const indexRouter = require('./routes/index');
