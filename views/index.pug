@@ -14,7 +14,7 @@ block content
               | #{m.title}
             p=m.text
             .message-info
-              if currentUser && (currentUser.isMember || currentUser.isAdmin)
+              if currentUser && (currentUser.isMember || currentUser.isAdmin || currentUser.username === m.user.username)
                 span(class="message-author") #{m.user.fullname}
               else
                 span(class="message-author") hidden on bush
