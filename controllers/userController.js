@@ -45,8 +45,24 @@ const userValidationSchema = Joi.object({
     .messages({ 'any.only': "passwords don't match" })
 });
 
+const userLoginValidationSchema = Joi.object({
+  username: Joi.string()
+    .trim()
+    .alphanum()
+    .min(2)
+    .max(100)
+    .required()
+    .messages(nameMessages),
+  password: Joi.string()
+    .required()
+    .ruleset.pattern(/^[a-zA-Z0-9\_\.]{3,30}$/)
+    .message(
+      'allowed values are alpha-numeric characters, . and _, min 3 to 30 length'
+    )
+});
+
 exports.getUserCreate = (req, res) => {
-  if (res.locals.currentUser) {
+  if (req.user) {
     res.redirect('/');
   } else {
     res.render('sign-up-form', { title: 'Create a new user', errors: {} });
@@ -115,17 +131,49 @@ module.exports.getUserLogin = (req, res) => {
     const newUserName = req.query.newUserName ? req.query.newUserName : null;
     res.render('log-in-form', {
       title: 'Log In',
-      loginErrors: {},
+      loginErrors: req.app.locals.loginErrors || {},
       newUserName
     });
   }
 };
 
-module.exports.postUserLogin = (req, res, next) => {
-  passport.authenticate('local', {
-    failureRedirect: '/user/log-in',
-    successRedirect: '/'
-  })(req, res, next);
+module.exports.postUserLogin = async (req, res, next) => {
+  try {
+    const { value, error } = await userLoginValidationSchema.validate(
+      req.body,
+      {
+        abortEarly: false
+      }
+    );
+
+    if (error) {
+      const errors = {};
+
+      error.details.forEach(
+        (err) =>
+          (errors[err.context.label] = {
+            message: err.message
+          })
+      );
+
+      res.render('log-in-form', {
+        title: 'Log In',
+        loginErrors: errors,
+        newUserName: null,
+        requestedUser: value.username
+      });
+    } else {
+      req.body = value;
+
+      passport.authenticate('local', {
+        failureRedirect: '/user/log-in',
+        successRedirect: '/'
+      })(req, res, next);
+    }
+  } catch (err) {
+    debug(err);
+    next();
+  }
 };
 
 module.exports.getLogout = (req, res, next) => {
