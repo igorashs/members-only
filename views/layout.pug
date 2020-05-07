@@ -13,8 +13,6 @@ html(lang="en")
           li
             a(href="/") Home
           if (currentUser)
-            li
-              a(href="/message/create") Add message
             if (!currentUser.isMember)
               li
                 a(href="/membership/join") Join the club

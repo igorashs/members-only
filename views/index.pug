@@ -3,6 +3,8 @@ extends layout
 block content
   h1 Message Board
   .message-board
+    if (currentUser)
+      a(href="/message/create" class="add-message-btn btn") Add Message
     if messages
       ul(class="messages-list")
         each m in messages
