@@ -1,0 +1,13 @@
+extends layout
+
+block content
+
+  h1= title
+  form(action="", method="post" class="form")
+    .input-group
+      label(for="clubSecret") Enter the secret code
+      if isWrongCode
+        span.error Try again...
+      input(id="clubSecret" name="clubSecret" type="password" required)
+    .input-group
+      button(class="btn") Submit
