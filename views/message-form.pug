@@ -3,7 +3,7 @@ extends layout
 block content
 
   h1= title
-  form(action="", method="post")
+  form(action="", method="post" class="form")
     .input-group
       label(for="title") Title
       if errors.title

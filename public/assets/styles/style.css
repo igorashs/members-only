@@ -144,7 +144,7 @@ main > h1 {
 }
 
 .message-board,
-form {
+.form {
   max-width: 900px;
   margin: 32px auto;
   padding: 16px;
@@ -159,6 +159,7 @@ form {
 }
 
 .message {
+  position: relative;
   background: var(--primary);
   border-radius: 4px;
   padding: 8px;
@@ -200,7 +201,7 @@ form {
   background: var(--secondary);
 }
 
-form {
+.form {
   display: grid;
   gap: 16px;
   justify-items: center;
@@ -243,6 +244,25 @@ form {
   border: 1px solid var(--secondary);
   background: var(--secondary-dark);
   cursor: pointer;
+}
+
+.message-options {
+  visibility: hidden;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  transform: translateX(120%);
+  transition: transform 200ms;
+}
+
+.delete-btn {
+  background: #fc3737;
+  border-color: #ff6363;
+}
+
+.message:hover .message-options {
+  transform: translateX(0);
+  visibility: initial;
 }
 
 .btn:hover,

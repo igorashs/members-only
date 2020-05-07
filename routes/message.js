@@ -5,4 +5,6 @@ router.get('/create', messageController.getMessageForm);
 
 router.post('/create', messageController.postMessageForm);
 
+router.post('/remove/:id', messageController.postRemoveMessage);
+
 module.exports = router;

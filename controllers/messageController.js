@@ -57,3 +57,25 @@ exports.postMessageForm = async (req, res, next) => {
     next();
   }
 };
+
+exports.postRemoveMessage = async (req, res, next) => {
+  if (!req.user) {
+    res.redirect('/user/log-in');
+  }
+
+  try {
+    const message = await Message.findById(req.params.id);
+
+    if (
+      req.user.isAdmin ||
+      message.user.toString() === req.user._id.toString()
+    ) {
+      await Message.findByIdAndRemove(req.params.id);
+    }
+
+    res.redirect('/');
+  } catch (err) {
+    debug(err);
+    next();
+  }
+};

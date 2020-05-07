@@ -6,7 +6,7 @@ block content
       | Welcome! #{newUserName}, please Log In
     else
       | Log In
-  form(action="", method="post")
+  form(action="", method="post" class="form")
     .input-group
       label(for="username") Username
       if loginErrors.username

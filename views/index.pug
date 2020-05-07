@@ -19,3 +19,7 @@ block content
               else
                 span(class="message-author") hidden on bush
               span(class="message-timestamp") #{m.timestampFormatted}
+            if currentUser && (currentUser.isAdmin || currentUser.username === m.user.username)
+              .message-options
+                form(action='message/remove/'+m._id, method="post")
+                  button(class="btn delete-btn") Delete
