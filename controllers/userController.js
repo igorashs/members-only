@@ -123,3 +123,8 @@ module.exports.postUserLogin = (req, res, next) => {
     successRedirect: '/'
   })(req, res, next);
 };
+
+module.exports.getLogout = (req, res, next) => {
+  req.logout();
+  res.redirect('/');
+};
