@@ -3,8 +3,6 @@ const messageController = require('../controllers/messageController');
 
 router.get('/create', messageController.getMessageForm);
 
-router.post('/create', (req, res) => {
-  res.send('POST /message/create not implemented');
-});
+router.post('/create', messageController.postMessageForm);
 
 module.exports = router;
