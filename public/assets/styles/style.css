@@ -215,14 +215,15 @@ form {
   font-size: 18px;
 }
 
-.input-group input {
+.input-group input,
+.input-group textarea {
   padding: 4px;
   border: 1px solid #808080;
   border-radius: 4px;
 }
 
-.log-in-btn {
-  align-self: flex-start;
+.input-group.large-group {
+  max-width: 600px;
 }
 
 .error {
