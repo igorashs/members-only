@@ -70,12 +70,20 @@ passport.use(
       const user = await User.findOne({ username });
 
       if (!user) {
+        app.locals.loginErrors = {
+          username: { message: `${username} doesn't exist` }
+        };
         return done(null, false);
       }
 
       if (await bcrypt.compare(password, user.password)) {
         return done(null, user);
       } else {
+        app.locals.requestedUser = username;
+
+        app.locals.loginErrors = {
+          password: { message: 'wrong password' }
+        };
         return done(null, false);
       }
     } catch (err) {

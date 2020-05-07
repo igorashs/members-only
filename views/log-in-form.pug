@@ -9,13 +9,13 @@ block content
   form(action="", method="post")
     .input-group
       label(for="username") Username
-      if errors.username
-        span.error= errors.username.message
-      input(id="username" name="username" type="text" placeholder="johnwick" required value=user ? user.username : '')
+      if loginErrors.username
+        span.error= loginErrors.username.message
+      input(id="username" name="username" type="text" placeholder="johnwick" required value=requestedUser ? requestedUser : '')
     .input-group
       label(for="password") Password
-      if errors.password
-        span.error= errors.password.message
+      if loginErrors.password
+        span.error= loginErrors.password.message
       input(id="password" name="password" type="password" required)
     .input-group
       button Log In
