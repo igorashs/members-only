@@ -289,3 +289,8 @@ main > h1 {
 .profile span {
   font-style: italic;
 }
+
+.admin {
+  padding-top: 16px;
+  text-align: center;
+}

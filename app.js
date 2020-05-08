@@ -21,7 +21,8 @@ const app = express();
   try {
     await mongoose.connect(env.mongoDB, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useFindAndModify: false
     });
   } catch (connectionErr) {
     debugServer(connectionErr);
@@ -118,11 +119,13 @@ const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const messageRouter = require('./routes/message');
 const membershipRouter = require('./routes/membership');
+const adminRouter = require('./routes/admin');
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/message', messageRouter);
 app.use('/membership', membershipRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

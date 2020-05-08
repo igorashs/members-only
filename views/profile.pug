@@ -11,12 +11,15 @@ block content
         span #{currentUser.lastName}
       h3 Username: 
         span #{currentUser.username}
-    form(action="/admin/join", method="post" class="form")
-      h2 Admin Privileges
-      .input-group
-        label(for="adminSecret") Enter the secret code
+    if currentUser.isAdmin
+      h2(class="admin") You're Admin
+    else
+      form(action="/admin/join", method="post" class="form")
+        h2 Admin Privileges
+        .input-group
+          label(for="adminSecret") Enter the secret code
           if isWrongCode
             span.error Try again...
-        input(id="adminSecret" name="adminSecret" type="password" required)
-      .input-group
-        button(class="btn") Submit
+          input(id="adminSecret" name="adminSecret" type="password" required)
+        .input-group
+          button(class="btn") Submit
