@@ -8,18 +8,19 @@ block content
     if messages
       ul(class="messages-list")
         each m in messages
-          li(class="message")
-            h3
-              span Title: 
-              | #{m.title}
-            p=m.text
-            .message-info
-              if currentUser && (currentUser.isMember || currentUser.isAdmin || currentUser.username === m.user.username)
-                span(class="message-author") #{m.user.fullname}
-              else
-                span(class="message-author") hidden on bush
-              span(class="message-timestamp") #{m.timestampFormatted}
-            if currentUser && (currentUser.isAdmin || currentUser.username === m.user.username)
-              .message-options
-                form(action='message/remove/'+m._id, method="post")
-                  button(class="btn delete-btn") Delete
+          if m.user
+            li(class="message")
+              h3
+                span Title: 
+                | #{m.title}
+              p=m.text
+              .message-info
+                if currentUser && (currentUser.isMember || currentUser.isAdmin || currentUser.username === m.user.username)
+                  span(class="message-author") #{m.user.fullname}
+                else
+                  span(class="message-author") hidden on bush
+                span(class="message-timestamp") #{m.timestampFormatted}
+              if currentUser && (currentUser.isAdmin || currentUser.username === m.user.username)
+                .message-options
+                  form(action='message/remove/'+m._id, method="post")
+                    button(class="btn delete-btn") Delete
