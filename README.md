@@ -2,7 +2,7 @@
 
 > ## From The Odin Project's [curriculum](https://www.theodinproject.com/lessons/members-only)
 
-> - [Live Demo]() **SOON** :shipit:
+> - [Live Demo](https://enigmatic-harbor-15560.herokuapp.com/) :shipit:
 
 ## Assignment
 
