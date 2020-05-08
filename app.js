@@ -78,6 +78,9 @@ passport.use(
       }
 
       if (await bcrypt.compare(password, user.password)) {
+        app.locals.requestedUser = null;
+        app.locals.loginErrors = {};
+
         return done(null, user);
       } else {
         app.locals.requestedUser = username;
@@ -113,6 +116,17 @@ passport.deserializeUser(async (_id, done) => {
 app.use(session({ secret: 'Alune', resave: true, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// get the logged user
+app.use((req, res, next) => {
+  if (req.user) {
+    app.locals.currentUser = req.user;
+  } else {
+    app.locals.currentUser = null;
+  }
+
+  next();
+});
 
 // add our routes
 const indexRouter = require('./routes/index');

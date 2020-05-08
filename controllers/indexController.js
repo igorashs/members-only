@@ -7,15 +7,6 @@ exports.getIndex = async (req, res, next) => {
   try {
     const messages = await Message.find().populate('user');
 
-    if (req.user) {
-      req.app.locals.requestedUser = null;
-      req.app.locals.loginErrors = {};
-
-      req.app.locals.currentUser = req.user;
-    } else {
-      req.app.locals.currentUser = null;
-    }
-
     res.render('index', { title: 'Message Board', messages });
   } catch (err) {
     debug(err);
