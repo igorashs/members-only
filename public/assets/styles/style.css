@@ -97,16 +97,24 @@ a {
 /* main-header */
 
 .main-header {
-  height: 60px;
+  display: flex;
+  min-height: 60px;
   background: var(--primary-dark);
 }
 
 .main-navigation {
   display: flex;
-  height: 100%;
+  flex-wrap: wrap;
+  width: 100%;
   padding: 0 16px;
   justify-content: space-between;
   font-size: 22px;
+}
+
+@media (max-width: 400px) {
+  .main-navigation {
+    font-size: 18px;
+  }
 }
 
 .main-navigation > ul {
@@ -117,6 +125,7 @@ a {
 .main-navigation li,
 .main-navigation li > a {
   height: 100%;
+  white-space: nowrap;
 }
 
 .main-navigation li > a {
@@ -133,6 +142,38 @@ a {
 
 .main-navigation > ul li:nth-child(n + 2) {
   margin-left: 16px;
+}
+
+@media (max-width: 600px) {
+  .main-navigation > ul {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .main-navigation li {
+    padding: 8px;
+  }
+
+  .auth-links {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+  }
+
+  .auth-links > li {
+    overflow: hidden;
+  }
+
+  .auth-links > li:last-child {
+    justify-self: end;
+  }
+
+  .auth-links li > a {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 /* main */
@@ -209,7 +250,7 @@ main > h1 {
 
 .input-group {
   width: 100%;
-  min-width: 280px;
+  min-width: 260px;
   max-width: 400px;
   display: flex;
   flex-direction: column;
@@ -221,6 +262,10 @@ main > h1 {
   padding: 4px;
   border: 1px solid #808080;
   border-radius: 4px;
+}
+
+.input-group textarea {
+  resize: none;
 }
 
 .input-group.large-group {
@@ -293,4 +338,14 @@ main > h1 {
 .admin {
   padding-top: 16px;
   text-align: center;
+}
+
+.container {
+  margin: 0 8px;
+}
+
+@media (max-width: 400px) {
+  .message-info {
+    grid-template-columns: 1fr;
+  }
 }
