@@ -180,3 +180,11 @@ module.exports.getLogout = (req, res, next) => {
   req.logout();
   res.redirect('/');
 };
+
+module.exports.getProfile = (req, res, next) => {
+  if (!req.user) {
+    res.redirect('/user/log-in');
+  }
+
+  res.render('profile', { title: 'My Profile' });
+};

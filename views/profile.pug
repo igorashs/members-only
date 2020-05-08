@@ -1,0 +1,22 @@
+extends layout
+
+block content
+
+  h1= title
+  .container
+    .profile
+      h3 First Name: 
+        span #{currentUser.firstName}
+      h3 Last Name: 
+        span #{currentUser.lastName}
+      h3 Username: 
+        span #{currentUser.username}
+    form(action="/admin/join", method="post" class="form")
+      h2 Admin Privileges
+      .input-group
+        label(for="adminSecret") Enter the secret code
+          if isWrongCode
+            span.error Try again...
+        input(id="adminSecret" name="adminSecret" type="password" required)
+      .input-group
+        button(class="btn") Submit

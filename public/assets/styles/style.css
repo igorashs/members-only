@@ -273,3 +273,19 @@ main > h1 {
 .add-message-btn {
   width: 200px;
 }
+
+.profile {
+  display: grid;
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.profile > * {
+  border-bottom: 1px solid grey;
+  padding: 16px 0 8px;
+  font-size: 20px;
+}
+
+.profile span {
+  font-style: italic;
+}
